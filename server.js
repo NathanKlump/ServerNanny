@@ -4,27 +4,24 @@ import { sendEmailAlert } from './MailManager.js';
 const app = express();
 const port = 3001;
 
+const urls = ['https://background-music.onrender.com/status', 'https://herald-ppvi.onrender.com/status'];
+
 app.get('/', (req, res) => {
     res.send('kept alive');
 });
 
 
-const checkStatus = (status, URL) => {
-    if (status === 'active') {
-        //sendEmailAlert(URL);
-        console.log('GO')
+const rooster = (urls) => {
+    for(let URL of urls) {
+        fetch(URL)
+        .then(res => res.text())
+        .then(resText => console.log(`received update: "${resText}" from: "${URL}"`))
+        .catch(error => console.error(`Error fetching ${URL}: `, error));
     }
 }
 
-const rooster = () => {
-    let URL = 'https://background-music.onrender.com/status';
-    fetch(URL)
-    .then(res => res.text())
-    .then(resText => checkStatus(resText, URL))
-}
-
-rooster();
-setInterval(rooster, 870000);
+rooster(urls);
+setInterval(() => rooster(urls), 870000);
 
 app.listen(port, () => {
     console.log(`server started on port ${port}`)
