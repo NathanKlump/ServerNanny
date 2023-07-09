@@ -1,6 +1,5 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import { sendEmailAlert } from './MailManager.js';
 const app = express();
 const port = 3001;
 
