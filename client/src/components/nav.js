@@ -1,10 +1,12 @@
 import React from 'react';
 
-function Navbar() {
+import { Auth } from './auth';
+
+function Navbar({user, setUser}) {
   return (
-    <nav className="bg-blue-500 p-6">
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="text-white font-semibold text-xl tracking-tight">Server Analytics</div>
+    <nav className="bg-blue-500">
+      <div className="flex items-center justify-between">
+        <div className="text-white font-semibold text-xl pl-2">Server Analytics</div>
         <div className="space-x-4">
           <a href="/" className="text-teal-200 hover:text-white">
             Home
@@ -16,6 +18,10 @@ function Navbar() {
             Contact
           </a>
         </div>
+        <Auth 
+        user={user} 
+        setUser={setUser}
+      />
       </div>
     </nav>
   );

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Auth } from './components/auth';
 import { databaseRef } from './config/firebase';
 import Navbar from './components/nav';
 
 function App() {
   const [user, setUser] = useState(null);
 
+  /*
   useEffect(() => {
     const userId = user?.uid;
     if (userId) {
@@ -20,11 +20,10 @@ function App() {
       };
     }
   }, [user?.uid]);
-  
+  */
   return (
     <div className="App">
-      <Navbar />
-      <Auth 
+      <Navbar      
         user={user} 
         setUser={setUser}
       />

@@ -17,6 +17,7 @@ export const Auth = ({user, setUser}) => {
             console.error(err)
         }
     }
+
     const signOutWithGoogle = async () => {
         try {
             await signOut(auth);
@@ -26,59 +27,26 @@ export const Auth = ({user, setUser}) => {
     }
 
     return (
-        <div>
-            <div id="gSignInWrapper" style={styles.signInWrapper}>
-                {user ? (
-                    <div id="customBtn" style={styles.customBtn} onClick={signOutWithGoogle}>
-                        <span style={styles.buttonText}>Sign Out</span>
-                    </div>
-                ) : (
-                    <div id="customBtn" style={styles.customBtn} onClick={signInWithGoogle}>
-                        <img src="https://banner2.cleanpng.com/20190731/uqk/kisspng-google-icon-5d4175d6037a16.4552672815645710940143.jpg" alt="Google sign-in" style={styles.icon}/> 
-                        <span style={styles.buttonText}>Google Sign in</span>
-                    </div>
-                )}
+<div className="font-roboto">
+    <div id="gSignInWrapper" className="my-2">
+        {user ? (
+            <div id="customBtn"
+                 className="inline-block bg-white text-gray-400 border border-gray-400 rounded p-2 cursor-pointer shadow text-center transform scale-75" 
+                 onClick={signOutWithGoogle}>
+                <span className="inline-block px-3 text-lg font-bold">Sign Out</span>
             </div>
-        </div>
+        ) : (
+            <div id="customBtn"
+                 className="inline-block bg-white text-gray-700 border border-gray-400 rounded p-2 cursor-pointer shadow text-center transform scale-75" 
+                 onClick={signInWithGoogle}>
+                <img src="https://banner2.cleanpng.com/20190731/uqk/kisspng-google-icon-5d4175d6037a16.4552672815645710940143.jpg" 
+                     alt="Google sign-in" 
+                     className="inline-block align-middle w-10 h-10 mr-2" />
+                <span className="inline-block align-middle px-3 text-lg font-bold">Google Sign in</span>
+            </div>
+        )}
+    </div>
+</div>
+
     );
-}
-
-// styles object remains the same...
-
-const styles = {
-    signInWrapper: {
-        fontFamily: 'Roboto, sans-serif'
-    },
-    label: {
-        fontSize: '16px',
-        color: '#404040',
-    },
-    customBtn: {
-        display: 'inline-block',
-        background: 'white',
-        color: '#444',
-        width: '190px',
-        border: 'thin solid #888',
-        boxShadow: '1px 1px 1px grey',
-        whiteSpace: 'nowrap',
-        borderRadius: '5px',
-        padding: '10px',
-        textAlign: 'center',
-        cursor: 'pointer',
-        marginTop: '10px'
-    },
-    icon: {
-        background: `url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat`,
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        width: '42px',
-        height: '42px',
-    },
-    buttonText: {
-        display: 'inline-block',
-        verticalAlign: 'middle',
-        padding: '0 15px',
-        fontSize: '18px',
-        fontWeight: 'bold'
-    }
 }
